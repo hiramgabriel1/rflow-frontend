@@ -1,24 +1,25 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "react-router";
-
 import {
-	BoxCubeIcon,
+	useCallback,
+	useEffect,
+	useRef,
+	useState,
+	type FC,
+	type ReactNode,
+} from "react";
+import { Link, useLocation } from "react-router";
+import {
 	CalenderIcon,
 	ChevronDownIcon,
 	GridIcon,
 	HorizontaLDots,
-	ListIcon,
-	PageIcon,
-	PieChartIcon,
 	PlugInIcon,
-	TableIcon,
 	UserCircleIcon,
-} from "../icons";
-import { useSidebar } from "../context/SidebarContext";
+} from "../shared/icons";
+import { useSidebarStore } from "../stores/useSidebarStore";
 
 type NavItem = {
 	name: string;
-	icon: React.ReactNode;
+	icon: ReactNode;
 	path?: string;
 	subItems?: { name: string; path: string; pro?: boolean; new?: boolean }[];
 };
@@ -39,47 +40,9 @@ const navItems: NavItem[] = [
 		name: "User Profile",
 		path: "/profile",
 	},
-	{
-		name: "Forms",
-		icon: <ListIcon />,
-		subItems: [{ name: "Form Elements", path: "/form-elements", pro: false }],
-	},
-	{
-		name: "Tables",
-		icon: <TableIcon />,
-		subItems: [{ name: "Basic Tables", path: "/basic-tables", pro: false }],
-	},
-	{
-		name: "Pages",
-		icon: <PageIcon />,
-		subItems: [
-			{ name: "Blank Page", path: "/blank", pro: false },
-			{ name: "404 Error", path: "/error-404", pro: false },
-		],
-	},
 ];
 
 const othersItems: NavItem[] = [
-	{
-		icon: <PieChartIcon />,
-		name: "Charts",
-		subItems: [
-			{ name: "Line Chart", path: "/line-chart", pro: false },
-			{ name: "Bar Chart", path: "/bar-chart", pro: false },
-		],
-	},
-	{
-		icon: <BoxCubeIcon />,
-		name: "UI Elements",
-		subItems: [
-			{ name: "Alerts", path: "/alerts", pro: false },
-			{ name: "Avatar", path: "/avatars", pro: false },
-			{ name: "Badge", path: "/badge", pro: false },
-			{ name: "Buttons", path: "/buttons", pro: false },
-			{ name: "Images", path: "/images", pro: false },
-			{ name: "Videos", path: "/videos", pro: false },
-		],
-	},
 	{
 		icon: <PlugInIcon />,
 		name: "Authentication",
@@ -90,8 +53,9 @@ const othersItems: NavItem[] = [
 	},
 ];
 
-const AppSidebar: React.FC = () => {
-	const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
+const AppSidebar: FC = () => {
+	const { isExpanded, isMobileOpen, isHovered, setIsHovered } =
+		useSidebarStore();
 	const location = useLocation();
 
 	const [openSubmenu, setOpenSubmenu] = useState<{
@@ -103,7 +67,6 @@ const AppSidebar: React.FC = () => {
 	);
 	const subMenuRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
-	// const isActive = (path: string) => location.pathname === path;
 	const isActive = useCallback(
 		(path: string) => location.pathname === path,
 		[location.pathname]
