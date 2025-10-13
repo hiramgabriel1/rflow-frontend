@@ -1,15 +1,15 @@
-import { useEffect, useRef, useState } from "react";
-
+import { useEffect, useRef, useState, type FC } from "react";
 import { Link } from "react-router";
-import { useSidebar } from "../context/SidebarContext";
+import { useSidebarStore } from "../stores/useSidebarStore";
 import { ThemeToggleButton } from "../components/common/ThemeToggleButton";
 import NotificationDropdown from "../components/header/NotificationDropdown";
 import UserDropdown from "../components/header/UserDropdown";
 
-const AppHeader: React.FC = () => {
+const AppHeader: FC = () => {
 	const [isApplicationMenuOpen, setApplicationMenuOpen] = useState(false);
 
-	const { isMobileOpen, toggleSidebar, toggleMobileSidebar } = useSidebar();
+	const { isMobileOpen, toggleSidebar, toggleMobileSidebar } =
+		useSidebarStore();
 
 	const handleToggle = () => {
 		if (window.innerWidth >= 1024) {
@@ -80,7 +80,6 @@ const AppHeader: React.FC = () => {
 								/>
 							</svg>
 						)}
-						{/* Cross Icon */}
 					</button>
 
 					<Link to="/" className="lg:hidden">
@@ -89,11 +88,7 @@ const AppHeader: React.FC = () => {
 							src="./images/logo/logo.svg"
 							alt="Logo"
 						/>
-						<img
-							className="hidden dark:block"
-							// src="./images/logo/logo-dark.svg"
-							alt="Logo"
-						/>
+						<img className="hidden dark:block" alt="Logo" />
 					</Link>
 
 					<button
@@ -157,13 +152,9 @@ const AppHeader: React.FC = () => {
 					} items-center justify-between w-full gap-4 px-5 py-4 lg:flex shadow-theme-md lg:justify-end lg:px-0 lg:shadow-none`}
 				>
 					<div className="flex items-center gap-2 2xsm:gap-3">
-						{/* <!-- Dark Mode Toggler --> */}
 						<ThemeToggleButton />
-						{/* <!-- Dark Mode Toggler --> */}
 						<NotificationDropdown />
-						{/* <!-- Notification Menu Area --> */}
 					</div>
-					{/* <!-- User Area --> */}
 					<UserDropdown />
 				</div>
 			</div>

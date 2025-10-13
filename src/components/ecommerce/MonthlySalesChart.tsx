@@ -1,9 +1,9 @@
 import Chart from "react-apexcharts";
 import { type ApexOptions } from "apexcharts";
-import { Dropdown } from "../ui/dropdown/Dropdown";
-import { DropdownItem } from "../ui/dropdown/DropdownItem";
-import { MoreDotIcon } from "../../icons";
+import { MoreDotIcon } from "../../shared/icons";
 import { useState } from "react";
+import { Dropdown } from "../../shared/ui/dropdown/Dropdown";
+import { DropdownItem } from "../../shared/ui/dropdown/DropdownItem";
 
 export default function MonthlySalesChart() {
 	const options: ApexOptions = {

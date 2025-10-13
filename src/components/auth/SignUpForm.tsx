@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router";
 import { useFormik } from "formik";
-import { EyeCloseIcon, EyeIcon } from "../../icons";
+import { EyeCloseIcon, EyeIcon } from "../../shared/icons";
 import FormInput from "../form/FormInput";
 import FormSelect from "../form/FormSelect";
 import FormCheckboxTerms from "../form/FormCheckboxTerms";
