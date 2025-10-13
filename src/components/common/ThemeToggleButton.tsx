@@ -1,6 +1,7 @@
+import type { FC } from "react";
 import { useThemeStore } from "../../stores/useThemeStore";
 
-export const ThemeToggleButton: React.FC = () => {
+export const ThemeToggleButton: FC = () => {
 	const { toggleTheme } = useThemeStore();
 
 	return (
