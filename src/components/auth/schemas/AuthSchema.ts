@@ -1,5 +1,8 @@
 import * as Yup from "yup";
 
+/**
+ * schema to validate types in real time to signUp form
+ */
 export const signUpSchema = Yup.object().shape({
 	username: Yup.string()
 		.min(3, "El nombre de usuario debe tener al menos 3 caracteres")
@@ -17,13 +20,9 @@ export const signUpSchema = Yup.object().shape({
 		.matches(/^[0-9+\-\s()]*$/, "Número de teléfono inválido")
 		.min(10, "El número de teléfono debe tener al menos 10 dígitos")
 		.required("El número de teléfono es requerido"),
-	companyName: Yup.string()
-		.min(2, "El nombre de la empresa debe tener al menos 2 caracteres")
-		.required("El nombre de la empresa es requerido"),
-	typeCompany: Yup.string().required("El tipo de empresa es requerido"),
 	pageWhereYouFound: Yup.string()
 		.oneOf(
-			["tiktok", "facebook", "instagram", "reddit", "x", "other"],
+			["TikTok", "Facebook", "Instagram", "Reddit", "X", "Other"],
 			"Selecciona una opción válida"
 		)
 		.required("Este campo es requerido"),

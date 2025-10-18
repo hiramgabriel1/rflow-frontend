@@ -1,12 +1,12 @@
 export type TypeAuth = "Login" | "Register";
 
 export type PageWhereYouFound =
-	| "tiktok"
-	| "facebook"
-	| "instagram"
-	| "reddit"
-	| "x"
-	| "other";
+	| "TikTok"
+	| "Facebook"
+	| "Instagram"
+	| "Reddit"
+	| "X"
+	| "Other";
 
 export interface User {
 	email: string;

@@ -9,7 +9,6 @@ import OptionsSignup from "./components/OptionsSignup";
 import { useAuthUser } from "../../pages/AuthPages/hooks/useAuth";
 import { signUpSchema } from "./schemas/AuthSchema";
 import {
-	companyTypeOptions,
 	initialValues,
 	referralSourceOptions,
 } from "./constants/authConstants";
@@ -125,32 +124,6 @@ export default function SignUpForm() {
 									value={formik.values.phoneNumber}
 									error={formik.errors.phoneNumber}
 									touched={formik.touched.phoneNumber}
-								/>
-
-								<FormInput
-									label="Company Name"
-									name="companyName"
-									type="text"
-									placeholder="Enter your company name"
-									required
-									onChange={formik.handleChange}
-									onBlur={formik.handleBlur}
-									value={formik.values.companyName}
-									error={formik.errors.companyName}
-									touched={formik.touched.companyName}
-								/>
-
-								<FormSelect
-									label="Type of Company"
-									name="typeCompany"
-									placeholder="Select company type"
-									required
-									options={companyTypeOptions}
-									onChange={formik.handleChange}
-									onBlur={formik.handleBlur}
-									value={formik.values.typeCompany}
-									error={formik.errors.typeCompany}
-									touched={formik.touched.typeCompany}
 								/>
 
 								<FormSelect
