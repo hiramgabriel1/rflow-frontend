@@ -12,8 +12,6 @@ import {
 	ChevronDownIcon,
 	GridIcon,
 	HorizontaLDots,
-	PlugInIcon,
-	UserCircleIcon,
 } from "../shared/icons";
 import { useSidebarStore } from "../stores/useSidebarStore";
 
@@ -28,30 +26,27 @@ const navItems: NavItem[] = [
 	{
 		icon: <GridIcon />,
 		name: "Dashboard",
-		subItems: [{ name: "Ecommerce", path: "/", pro: false }],
+		path: "/",
+		// subItems: [{ name: "Ecommerce", path: "/", pro: false }],
 	},
 	{
 		icon: <CalenderIcon />,
 		name: "Calendar",
 		path: "/calendar",
 	},
-	{
-		icon: <UserCircleIcon />,
-		name: "User Profile",
-		path: "/profile",
-	},
 ];
 
-const othersItems: NavItem[] = [
-	{
-		icon: <PlugInIcon />,
-		name: "Authentication",
-		subItems: [
-			{ name: "Sign In", path: "/signin", pro: false },
-			{ name: "Sign Up", path: "/signup", pro: false },
-		],
-	},
-];
+// todo: pending change for other options array
+// const othersItems: NavItem[] = [
+// 	{
+// 		icon: <PlugInIcon />,
+// 		name: "Authentication",
+// 		subItems: [
+// 			{ name: "Sign In", path: "/signin", pro: false },
+// 			{ name: "Sign Up", path: "/signup", pro: false },
+// 		],
+// 	},
+// ];
 
 const AppSidebar: FC = () => {
 	const { isExpanded, isMobileOpen, isHovered, setIsHovered } =
@@ -75,8 +70,7 @@ const AppSidebar: FC = () => {
 	useEffect(() => {
 		let submenuMatched = false;
 		["main", "others"].forEach((menuType) => {
-			const items = menuType === "main" ? navItems : othersItems;
-			items.forEach((nav, index) => {
+			navItems.forEach((nav, index) => {
 				if (nav.subItems) {
 					nav.subItems.forEach((subItem) => {
 						if (isActive(subItem.path)) {
@@ -316,7 +310,6 @@ const AppSidebar: FC = () => {
 									<HorizontaLDots />
 								)}
 							</h2>
-							{renderMenuItems(othersItems, "others")}
 						</div>
 					</div>
 				</nav>

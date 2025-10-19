@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useFormik } from "formik";
 import { EyeCloseIcon, EyeIcon } from "../../shared/icons";
 import FormInput from "../form/FormInput";
@@ -19,6 +19,7 @@ import {
  */
 export default function SignUpForm() {
 	const [showPassword, setShowPassword] = useState(false);
+	const navigate = useNavigate();
 
 	const { trigger, isLoading, error } = useAuthUser("Register");
 
@@ -29,6 +30,7 @@ export default function SignUpForm() {
 			try {
 				const { ...registerData } = values;
 				await trigger(registerData);
+				navigate("/");
 			} catch (err) {
 				console.error("Error al registrar:", err);
 			}

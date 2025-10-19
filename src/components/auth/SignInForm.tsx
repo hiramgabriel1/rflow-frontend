@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useFormik } from "formik";
 import { EyeCloseIcon, EyeIcon } from "../../shared/icons";
 import FormInput from "../form/FormInput";
@@ -15,6 +15,7 @@ import { signInInitialValues } from "./constants/authConstants";
  */
 export default function SignInForm() {
 	const [showPassword, setShowPassword] = useState(false);
+	const navigate = useNavigate();
 
 	const { trigger, isLoading, error } = useAuthUser("Login");
 
@@ -25,6 +26,7 @@ export default function SignInForm() {
 			try {
 				const { email, password } = values;
 				await trigger({ email, password });
+				navigate("/");
 			} catch (err) {
 				console.error("Error al iniciar sesión:", err);
 			}
